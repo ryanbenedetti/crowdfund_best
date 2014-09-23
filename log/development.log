@@ -1,0 +1,1599 @@
+  [1m[36mProject Load (0.5ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+SQLite3::SQLException: no such table: projects: SELECT "projects".* FROM "projects"
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (2.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProjects (20130228190011)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "target_pledge_amount" decimal, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130228190011"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddFieldsToProjects (20130228190204)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "projects" ADD "website" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "projects" ADD "pledging_ends_on" date
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130228190204"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to AddMoreFieldsToProjects (20130228222855)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "projects" ADD "team_members" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "projects" ADD "image_file_name" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130228222855"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (37.4ms)[0m  [1mINSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Sun, 14 Sep 2014 00:12:55 UTC +00:00], ["description", "A description of a start-up project"], ["image_file_name", "project-a.png"], ["name", "Start-Up Project"], ["pledging_ends_on", Mon, 15 Sep 2014], ["target_pledge_amount", #<BigDecimal:7fabb58dba90,'0.1E3',9(45)>], ["team_members", "Amber, John, Charles"], ["updated_at", Sun, 14 Sep 2014 00:12:55 UTC +00:00], ["website", "http://project-a.com"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Sun, 14 Sep 2014 00:12:55 UTC +00:00], ["description", "A description of a community project"], ["image_file_name", "project-b.png"], ["name", "Community Project"], ["pledging_ends_on", Sun, 21 Sep 2014], ["target_pledge_amount", #<BigDecimal:7fabb401f178,'0.2E3',9(45)>], ["team_members", "Diana, Jane, Joe"], ["updated_at", Sun, 14 Sep 2014 00:12:55 UTC +00:00], ["website", "http://project-b.com"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Sun, 14 Sep 2014 00:12:55 UTC +00:00], ["description", "A description of a person project"], ["image_file_name", "project-c.png"], ["name", "Personal Project"], ["pledging_ends_on", Tue, 14 Oct 2014], ["target_pledge_amount", #<BigDecimal:7fabb2189ad8,'0.3E3',9(45)>], ["team_members", "Tom, Harry, Sally"], ["updated_at", Sun, 14 Sep 2014 00:12:55 UTC +00:00], ["website", "http://project-c.com"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "target_pledge_amount" decimal, "created_at" datetime, "updated_at" datetime, "website" varchar(255), "pledging_ends_on" date, "team_members" varchar(255), "image_file_name" varchar(255)) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130228222855')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130228190011')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130228190204')[0m
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-13 17:37:05 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"", "description"=>"asdfasdf", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"13", "target_pledge_amount"=>"", "website"=>"", "team_members"=>"", "image_file_name"=>""}, "commit"=>"Create Project"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  Rendered projects/_form.html.erb (14.9ms)
+  Rendered projects/new.html.erb within layouts/application (18.4ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 1102ms (Views: 1026.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-13 17:37:07 -0700
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"", "description"=>"asdfasdf", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"13", "target_pledge_amount"=>"", "website"=>"", "team_members"=>"", "image_file_name"=>""}, "commit"=>"Create Project"}
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  Rendered projects/_form.html.erb (9.6ms)
+  Rendered projects/new.html.erb within layouts/application (10.5ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 28ms (Views: 20.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-13 17:38:07 -0700
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"", "description"=>"asdfasdf", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"13", "target_pledge_amount"=>"", "website"=>"", "team_members"=>"", "image_file_name"=>""}, "commit"=>"Create Project"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  Rendered shared/_errors.html.erb (4.1ms)
+  Rendered projects/_form.html.erb (16.0ms)
+  Rendered projects/new.html.erb within layouts/application (17.0ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 33ms (Views: 27.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:02 -0700
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-14 00:39:37.085798') ORDER BY pledging_ends_on asc
+  Rendered projects/index.html.erb within layouts/application (13.0ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_sidebar.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 29ms (Views: 24.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/assets/project-b.png" for 127.0.0.1 at 2014-09-13 17:39:37 -0700
+
+
+Started GET "/projects/2" for 127.0.0.1 at 2014-09-13 17:39:39 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered projects/show.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_sidebar.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 16ms (Views: 12.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects/2/edit" for 127.0.0.1 at 2014-09-13 17:39:41 -0700
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered shared/_errors.html.erb (0.8ms)
+  Rendered projects/_form.html.erb (56.1ms)
+  Rendered projects/edit.html.erb within layouts/application (57.6ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 70ms (Views: 66.5ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/projects/2" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+Processing by ProjectsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"", "description"=>"A description of a community project", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"21", "target_pledge_amount"=>"200", "website"=>"http://project-b.com", "team_members"=>"Diana, Jane, Joe", "image_file_name"=>"project-b.png"}, "commit"=>"Update Project", "id"=>"2"}
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  Rendered shared/_errors.html.erb (1.2ms)
+  Rendered projects/_form.html.erb (11.3ms)
+  Rendered projects/edit.html.erb within layouts/application (12.9ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 28ms (Views: 22.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-13 17:39:54 -0700
+
+
+Started GET "/projects/2" for 127.0.0.1 at 2014-09-13 17:40:07 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered projects/show.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 15ms (Views: 11.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/projects/2/edit" for 127.0.0.1 at 2014-09-13 17:40:13 -0700
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered projects/_form.html.erb (7.2ms)
+  Rendered projects/edit.html.erb within layouts/application (8.2ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 19ms (Views: 16.9ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/projects/2" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+Processing by ProjectsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"Community Project", "description"=>"A description of a community project", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"21", "target_pledge_amount"=>"200", "website"=>"http://project-b.com", "team_members"=>"Diana, Jane, Joe", "image_file_name"=>"project-b.png"}, "commit"=>"Update Project", "id"=>"2"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://localhost:3002/projects/2
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/projects/2" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered projects/show.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 13ms (Views: 11.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-13 17:40:15 -0700
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-14 11:01:40 -0700
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-14 18:01:40.506709') ORDER BY pledging_ends_on asc
+  Rendered projects/index.html.erb within layouts/application (15.0ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 31ms (Views: 24.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-14 11:01:47 -0700
+Processing by ProjectsController#new as HTML
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered projects/_form.html.erb (7.5ms)
+  Rendered projects/new.html.erb within layouts/application (8.8ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 19ms (Views: 17.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-14 11:02:16 -0700
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"laskdjl;kjasdlkfj", "description"=>"lkxjal;kajsdl;fkj;laksdjflk;jasdlkfjlkajsdkfl", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"14", "target_pledge_amount"=>"119", "website"=>"http://www.osa.com", "team_members"=>"as;dkjfl;kjasdlkfj ;alsjdf ;ljkasldkfj", "image_file_name"=>""}, "commit"=>"Create Project"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Sun, 14 Sep 2014 18:02:16 UTC +00:00], ["description", "lkxjal;kajsdl;fkj;laksdjflk;jasdlkfjlkajsdkfl"], ["image_file_name", ""], ["name", "laskdjl;kjasdlkfj"], ["pledging_ends_on", Sun, 14 Sep 2014], ["target_pledge_amount", #<BigDecimal:7f94697d8a70,'0.119E3',9(18)>], ["team_members", "as;dkjfl;kjasdlkfj ;alsjdf ;ljkasldkfj"], ["updated_at", Sun, 14 Sep 2014 18:02:16 UTC +00:00], ["website", "http://www.osa.com"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3002/projects/4
+Completed 302 Found in 11ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/projects/4" for 127.0.0.1 at 2014-09-14 11:02:16 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "4"]]
+  Rendered projects/show.html.erb within layouts/application (24.6ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 36ms (Views: 33.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-09-14 11:02:17 -0700
+
+
+Started GET "/projects/4" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "4"]]
+  Rendered projects/show.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 17ms (Views: 14.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-09-14 11:02:19 -0700
+
+
+Started DELETE "/projects/4" for 127.0.0.1 at 2014-09-14 11:02:27 -0700
+Processing by ProjectsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "id"=>"4"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "4"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "projects" WHERE "projects"."id" = ?  [["id", 4]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3002/projects
+Completed 302 Found in 9ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-14 11:02:27 -0700
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-14 18:02:27.945840') ORDER BY pledging_ends_on asc
+  Rendered projects/index.html.erb within layouts/application (5.1ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 19ms (Views: 16.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:28 -0700
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-14 18:02:30.334832') ORDER BY pledging_ends_on asc[0m
+  Rendered projects/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered shared/_flashes.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 18ms (Views: 16.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/project-b.png" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/assets/project-c.png" for 127.0.0.1 at 2014-09-14 11:02:30 -0700
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2014-09-14 11:02:31 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered projects/show.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 11ms (Views: 9.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/projects/1/edit" for 127.0.0.1 at 2014-09-14 11:02:33 -0700
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered projects/_form.html.erb (6.1ms)
+  Rendered projects/edit.html.erb within layouts/application (6.8ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 16ms (Views: 14.6ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/projects/1" for 127.0.0.1 at 2014-09-14 11:02:36 -0700
+Processing by ProjectsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"Start-Up Projects", "description"=>"A description of a start-up project", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"15", "target_pledge_amount"=>"100", "website"=>"http://project-a.com", "team_members"=>"Amber, John, Charles", "image_file_name"=>"project-a.png"}, "commit"=>"Update Project", "id"=>"1"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE "projects" SET "name" = ?, "updated_at" = ? WHERE "projects"."id" = 1  [["name", "Start-Up Projects"], ["updated_at", Sun, 14 Sep 2014 18:02:36 UTC +00:00]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3002/projects/1
+Completed 302 Found in 10ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2014-09-14 11:02:36 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered projects/show.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 15ms (Views: 12.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-14 11:02:37 -0700
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered projects/show.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 13ms (Views: 11.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-14 11:02:39 -0700
+
+
+Started GET "/projects/1/edit" for 127.0.0.1 at 2014-09-14 11:02:42 -0700
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered projects/_form.html.erb (9.0ms)
+  Rendered projects/edit.html.erb within layouts/application (9.8ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 23ms (Views: 20.6ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/projects/1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+Processing by ProjectsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"Start-Up Project", "description"=>"A description of a start-up project", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"15", "target_pledge_amount"=>"100", "website"=>"http://project-a.com", "team_members"=>"Amber, John, Charles", "image_file_name"=>"project-a.png"}, "commit"=>"Update Project", "id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "projects" SET "name" = ?, "updated_at" = ? WHERE "projects"."id" = 1[0m  [["name", "Start-Up Project"], ["updated_at", Sun, 14 Sep 2014 18:02:46 UTC +00:00]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Redirected to http://localhost:3002/projects/1
+Completed 302 Found in 8ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered projects/show.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 61ms (Views: 58.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-14 11:02:46 -0700
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-14 11:07:39 -0700
+Processing by ProjectsController#new as HTML
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered projects/_form.html.erb (16.0ms)
+  Rendered projects/new.html.erb within layouts/application (17.0ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 244ms (Views: 236.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"sa;ldkf;lkasd", "description"=>";lksdal;fkals;dkfl;aksdl;fk", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"14", "target_pledge_amount"=>"69", "website"=>"www.dante.com", "team_members"=>"as;lkdjflkj jalsdkjflk ;lajksdl;jasd", "image_file_name"=>""}, "commit"=>"Create Project"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  Rendered shared/_errors.html.erb (0.9ms)
+  Rendered projects/_form.html.erb (9.8ms)
+  Rendered projects/new.html.erb within layouts/application (10.9ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 29ms (Views: 21.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:03 -0700
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"sa;ldkf;lkasd", "description"=>";lksdal;fkals;dkfl;aksdl;fk", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"14", "target_pledge_amount"=>"69", "website"=>"http://www.dante.com", "team_members"=>"as;lkdjflkj jalsdkjflk ;lajksdl;jasd", "image_file_name"=>""}, "commit"=>"Create Project"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Sun, 14 Sep 2014 18:08:10 UTC +00:00], ["description", ";lksdal;fkals;dkfl;aksdl;fk"], ["image_file_name", ""], ["name", "sa;ldkf;lkasd"], ["pledging_ends_on", Sun, 14 Sep 2014], ["target_pledge_amount", #<BigDecimal:7f946a326b70,'0.69E2',9(18)>], ["team_members", "as;lkdjflkj jalsdkjflk ;lajksdl;jasd"], ["updated_at", Sun, 14 Sep 2014 18:08:10 UTC +00:00], ["website", "http://www.dante.com"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Redirected to http://localhost:3002/projects/5
+Completed 302 Found in 12ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/projects/5" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "5"]]
+  Rendered projects/show.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 17ms (Views: 12.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:10 -0700
+
+
+Started DELETE "/projects/5" for 127.0.0.1 at 2014-09-14 11:08:16 -0700
+Processing by ProjectsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "id"=>"5"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "5"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "projects" WHERE "projects"."id" = ?  [["id", 5]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3002/projects
+Completed 302 Found in 8ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-14 11:08:16 -0700
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-14 18:08:17.004245') ORDER BY pledging_ends_on asc
+  Rendered projects/index.html.erb within layouts/application (5.4ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered shared/_flashes.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 19ms (Views: 17.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/project-b.png" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/assets/project-c.png" for 127.0.0.1 at 2014-09-14 11:08:17 -0700
+
+
+Started GET "/projects/5" for 127.0.0.1 at 2014-09-14 11:08:30 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "5"]]
+Completed 404 Not Found in 8ms
+
+ActiveRecord::RecordNotFound (Couldn't find Project with id=5):
+  app/controllers/projects_controller.rb:7:in `show'
+
+
+  Rendered /Users/benedett/.rvm/gems/ruby-2.0.0-p481/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/benedett/.rvm/gems/ruby-2.0.0-p481/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/benedett/.rvm/gems/ruby-2.0.0-p481/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/benedett/.rvm/gems/ruby-2.0.0-p481/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.2ms)
+
+
+Started GET "/projects/5" for 127.0.0.1 at 2014-09-14 11:08:33 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "5"]]
+Completed 404 Not Found in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Project with id=5):
+  app/controllers/projects_controller.rb:7:in `show'
+
+
+  Rendered /Users/benedett/.rvm/gems/ruby-2.0.0-p481/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/benedett/.rvm/gems/ruby-2.0.0-p481/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /Users/benedett/.rvm/gems/ruby-2.0.0-p481/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/benedett/.rvm/gems/ruby-2.0.0-p481/gems/actionpack-4.0.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.5ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:35 -0700
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2014-09-14 11:08:37 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered projects/show.html.erb within layouts/application (3.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered shared/_flashes.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 29ms (Views: 15.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-14 11:08:37 -0700
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"sa;ldkf;lkasd", "description"=>";lksdal;fkals;dkfl;aksdl;fk", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"14", "target_pledge_amount"=>"69", "website"=>"www.dante.com", "team_members"=>"as;lkdjflkj jalsdkjflk ;lajksdl;jasd", "image_file_name"=>""}, "commit"=>"Create Project"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  Rendered shared/_errors.html.erb (1.1ms)
+  Rendered projects/_form.html.erb (9.2ms)
+  Rendered projects/new.html.erb within layouts/application (10.0ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 28ms (Views: 20.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:41 -0700
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "project"=>{"name"=>"sa;ldkf;lkasd", "description"=>";lksdal;fkals;dkfl;aksdl;fk", "pledging_ends_on(1i)"=>"2014", "pledging_ends_on(2i)"=>"9", "pledging_ends_on(3i)"=>"14", "target_pledge_amount"=>"69", "website"=>"http://www.dante.com", "team_members"=>"as;lkdjflkj jalsdkjflk ;lajksdl;jasd", "image_file_name"=>""}, "commit"=>"Create Project"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Sun, 14 Sep 2014 18:08:48 UTC +00:00], ["description", ";lksdal;fkals;dkfl;aksdl;fk"], ["image_file_name", ""], ["name", "sa;ldkf;lkasd"], ["pledging_ends_on", Sun, 14 Sep 2014], ["target_pledge_amount", #<BigDecimal:7f946c135800,'0.69E2',9(18)>], ["team_members", "as;lkdjflkj jalsdkjflk ;lajksdl;jasd"], ["updated_at", Sun, 14 Sep 2014 18:08:48 UTC +00:00], ["website", "http://www.dante.com"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Redirected to http://localhost:3002/projects/6
+Completed 302 Found in 9ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/projects/6" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "6"]]
+  Rendered projects/show.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 69ms (Views: 65.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2014-09-14 11:08:48 -0700
+
+
+Started DELETE "/projects/6" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+Processing by ProjectsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"3/giq0tEa8o7x2ERlHDo4/0Be9eZG5bsxRU1l7yGT0Q=", "id"=>"6"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "6"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  DELETE FROM "projects" WHERE "projects"."id" = ?  [["id", 6]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3002/projects
+Completed 302 Found in 8ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-14 18:08:54.499728') ORDER BY pledging_ends_on asc
+  Rendered projects/index.html.erb within layouts/application (5.7ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 19ms (Views: 16.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/project-c.png" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/assets/project-b.png" for 127.0.0.1 at 2014-09-14 11:08:54 -0700
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-14 18:08:57.714056') ORDER BY pledging_ends_on asc[0m
+  Rendered projects/index.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+  Rendered shared/_flashes.html.erb (0.1ms)
+  Rendered layouts/_sidebar.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 17ms (Views: 14.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/project-a.png" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/project-b.png" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/assets/project-c.png" for 127.0.0.1 at 2014-09-14 11:08:57 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2014-09-22 19:37:00 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (17.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (6.6ms)[0m  SELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-23 02:37:01.039943') ORDER BY pledging_ends_on asc
+  Rendered projects/index.html.erb within layouts/application (216.0ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered shared/_flashes.html.erb (0.9ms)
+  Rendered layouts/_sidebar.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 613ms (Views: 496.7ms | ActiveRecord: 7.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-22 19:37:01 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-22 19:37:02 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-22 19:37:02 -0700
+
+
+Started GET "/assets/project-c.png" for 127.0.0.1 at 2014-09-22 19:37:02 -0700
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-09-22 19:37:02 -0700
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-09-22 19:37:02 -0700
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2014-09-22 19:37:02 -0700
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2014-09-22 19:37:02 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePledges (20140923050021)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "pledges" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "amount" integer, "project_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_pledges_on_project_id" ON "pledges" ("project_id")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140923050021"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "pledges" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "amount" integer, "project_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_pledges_on_project_id" ON "pledges" ("project_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "target_pledge_amount" decimal, "created_at" datetime, "updated_at" datetime, "website" varchar(255), "pledging_ends_on" date, "team_members" varchar(255), "image_file_name" varchar(255)) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140923050021')[0m
+  [1m[35m (2.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130228190011')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130228190204')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130228222855')
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[35mPledge Load (21.2ms)[0m  SELECT "pledges".* FROM "pledges" WHERE "pledges"."project_id" = ?  [["project_id", 1]]
+  [1m[36mProject Load (0.5ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (29.1ms)[0m  [1mINSERT INTO "pledges" ("amount", "created_at", "email", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 45], ["created_at", Tue, 23 Sep 2014 05:10:32 UTC +00:00], ["email", "eddie@higgins.com"], ["name", "Eddie"], ["project_id", 1], ["updated_at", Tue, 23 Sep 2014 05:10:32 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36mPledge Load (0.2ms)[0m  [1mSELECT "pledges".* FROM "pledges" WHERE "pledges"."project_id" = ?[0m  [["project_id", 1]]
+  [1m[35mProject Load (0.5ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPledge Load (0.3ms)[0m  [1mSELECT "pledges".* FROM "pledges" WHERE "pledges"."project_id" = ?[0m  [["project_id", 1]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "pledges" ("amount", "created_at", "email", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 25], ["created_at", Tue, 23 Sep 2014 05:13:51 UTC +00:00], ["email", "jackie@higgins.com"], ["name", "Jackie"], ["project_id", 1], ["updated_at", Tue, 23 Sep 2014 05:13:51 UTC +00:00]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pledges" ("amount", "created_at", "email", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 95], ["created_at", Tue, 23 Sep 2014 20:42:37 UTC +00:00], ["email", "feldspar@doctors.com"], ["name", "Dr. Feldspar"], ["project_id", 1], ["updated_at", Tue, 23 Sep 2014 20:42:37 UTC +00:00]]
+  [1m[35m (1.6ms)[0m  commit transaction
+
+
+Started GET "/" for 127.0.0.1 at 2014-09-23 14:09:25 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-23 21:09:25.548795') ORDER BY pledging_ends_on asc
+  Rendered projects/index.html.erb within layouts/application (13.8ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered shared/_flashes.html.erb (0.2ms)
+  Rendered layouts/_sidebar.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 929ms (Views: 904.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/pledges.js?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/project-c.png" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-09-23 14:09:26 -0700
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-23 14:09:30 -0700
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE (pledging_ends_on >= '2014-09-23 21:09:30.618525') ORDER BY pledging_ends_on asc[0m
+  Rendered projects/index.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+  Rendered layouts/_sidebar.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 19ms (Views: 16.6ms | ActiveRecord: 0.3ms)
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" DESC LIMIT 1[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35mPledge Load (0.3ms)[0m  SELECT "pledges".* FROM "pledges" WHERE "pledges"."project_id" = ?  [["project_id", 1]]
+  [1m[36mSQL (0.6ms)[0m  [1mDELETE FROM "pledges" WHERE "pledges"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "pledges" WHERE "pledges"."id" = ?  [["id", 2]]
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "pledges" WHERE "pledges"."id" = ?[0m  [["id", 3]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "projects" WHERE "projects"."id" = ?  [["id", 1]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "pledges" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "amount" integer, "project_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.4ms)[0m  CREATE INDEX "index_pledges_on_project_id" ON "pledges" ("project_id")
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "target_pledge_amount" decimal, "created_at" datetime, "updated_at" datetime, "website" varchar(255), "pledging_ends_on" date, "team_members" varchar(255), "image_file_name" varchar(255)) [0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140923050021')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130228190011')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130228190204')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130228222855')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (27.8ms)[0m  [1mINSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Tue, 23 Sep 2014 21:43:29 UTC +00:00], ["description", "A description of a start-up project"], ["image_file_name", "project-a.png"], ["name", "Start-Up Project"], ["pledging_ends_on", Wed, 24 Sep 2014], ["target_pledge_amount", #<BigDecimal:7fcadc8d20d0,'0.1E3',9(45)>], ["team_members", "Amber, John, Charles"], ["updated_at", Tue, 23 Sep 2014 21:43:29 UTC +00:00], ["website", "http://project-a.com"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Tue, 23 Sep 2014 21:43:29 UTC +00:00], ["description", "A description of a community project"], ["image_file_name", "project-b.png"], ["name", "Community Project"], ["pledging_ends_on", Tue, 30 Sep 2014], ["target_pledge_amount", #<BigDecimal:7fcadc2b9888,'0.2E3',9(45)>], ["team_members", "Diana, Jane, Joe"], ["updated_at", Tue, 23 Sep 2014 21:43:29 UTC +00:00], ["website", "http://project-b.com"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "projects" ("created_at", "description", "image_file_name", "name", "pledging_ends_on", "target_pledge_amount", "team_members", "updated_at", "website") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Tue, 23 Sep 2014 21:43:29 UTC +00:00], ["description", "A description of a person project"], ["image_file_name", "project-c.png"], ["name", "Personal Project"], ["pledging_ends_on", Thu, 23 Oct 2014], ["target_pledge_amount", #<BigDecimal:7fcadd3463b8,'0.3E3',9(45)>], ["team_members", "Tom, Harry, Sally"], ["updated_at", Tue, 23 Sep 2014 21:43:29 UTC +00:00], ["website", "http://project-c.com"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "pledges" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "amount" integer, "project_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_pledges_on_project_id" ON "pledges" ("project_id")
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "target_pledge_amount" decimal, "created_at" datetime, "updated_at" datetime, "website" varchar(255), "pledging_ends_on" date, "team_members" varchar(255), "image_file_name" varchar(255)) [0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140923050021')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130228190011')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130228190204')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130228222855')
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "pledges" ("amount", "created_at", "email", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 204], ["created_at", Tue, 23 Sep 2014 21:48:01 UTC +00:00], ["email", "linus@linux.com"], ["name", "Linus Torvalds"], ["project_id", 1], ["updated_at", Tue, 23 Sep 2014 21:48:01 UTC +00:00]]
+  [1m[35m (21.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "pledges" ("amount", "created_at", "email", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["amount", 198], ["created_at", Tue, 23 Sep 2014 21:49:08 UTC +00:00], ["email", "corleone@godfather.com"], ["name", "Don Corleone"], ["project_id", 1], ["updated_at", Tue, 23 Sep 2014 21:49:08 UTC +00:00]]
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "pledges" ("amount", "created_at", "email", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 750], ["created_at", Tue, 23 Sep 2014 22:26:52 UTC +00:00], ["email", "clouseau@pinkpanther.com"], ["name", "Inspector Clouseau"], ["project_id", 1], ["updated_at", Tue, 23 Sep 2014 22:26:52 UTC +00:00]]
+  [1m[35m (2.1ms)[0m  commit transaction
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "pledges" ("amount", "created_at", "email", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 150], ["created_at", Tue, 23 Sep 2014 22:27:20 UTC +00:00], ["email", "clouseau@pinkpanther.com"], ["name", "Inspector Clouseau"], ["project_id", 2], ["updated_at", Tue, 23 Sep 2014 22:27:20 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "pledges" ("amount", "created_at", "email", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["amount", 98], ["created_at", Tue, 23 Sep 2014 22:27:56 UTC +00:00], ["email", "pkd@valis.com"], ["name", "Philip K. Dick"], ["project_id", 2], ["updated_at", Tue, 23 Sep 2014 22:27:56 UTC +00:00]]
+  [1m[36m (5.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
